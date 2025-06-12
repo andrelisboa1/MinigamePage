@@ -28,10 +28,10 @@
         document.getElementById("debug").innerText = msg;
     }
 
-    for (const key in target) {
+    for (const key in document) {
         if(/^on/.test(key)) {
             const eventType = key.substr(2);
-            target.addEventListener(eventType, function(e){ debug(`${e}`); });
+            document.addEventListener(eventType, function(e){ debug(`${e}`); });
         }
     }
 </script>
