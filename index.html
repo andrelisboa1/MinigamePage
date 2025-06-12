@@ -22,30 +22,42 @@
             background-color: white;
             border-radius: 5px;
         }
+
+        .toggle-btn {
+            width: 4vw;
+            height: 4vw;
+            border: 1pt solid black;
+            background-color: #444;
+        }
 </style>
 <script>
     function debug(msg) {
         document.getElementById("debug").innerText = msg;
     }
 
-    for (const key in document) {
-        if(/^on/.test(key)) {
-            const eventType = key.substr(2);
-            document.addEventListener(eventType, function(e){ debug(`${e}`); });
-        }
+    window.onload = function() {
+        let toggleBtns = Array.from(document.getElementsByClassName("toggle-btn"));
+        toggleBtns.forEach(function(btn, idx) {
+            btn.dataset.toggled = "yes";
+            btn.addEventListener('click', function() {
+                console.log(`Was ${btn.dataset.toggled}`);
+                btn.style.backgroundColor = (btn.dataset.toggled === "no") ? "#999" : "#444";
+                btn.dataset.toggled = (btn.dataset.toggled === "yes") ? "no"  : "yes";
+                console.log(`- Now is ${btn.dataset.toggled}`);
+            });
+        });
     }
 </script>
 </head>
 <body>
     <header>
-        <h1>Welcome to My Simple Page</h1>
+        <h1>Welcome to my Minigames Page</h1>
     </header>
     <main>
-        <p>This is a basic HTML page template with a simple layout.</p>
-        <p id="debug" style="font-weight: bold; color: red;">Debug section.</p>
+        <div class="toggle-btn"></div>
     </main>
     <footer>
-        <p>&copy; Iteration 3</p>
+        <p>&copy; Iteration 4</p>
     </footer>
 </body>
 </html>
