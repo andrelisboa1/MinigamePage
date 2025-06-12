@@ -22,7 +22,17 @@
             background-color: white;
             border-radius: 5px;
         }
-    </style>
+</style>
+<script>
+    function debug(msg) {
+        document.getElementById("debug").innerText = msg;
+    }
+    document.addEventListener("click", function(event) {
+    if (event.target.tagName === "BUTTON") {
+        debug(`Button clicked: ${event.target}`);
+    }
+});
+</script>
 </head>
 <body>
     <header>
@@ -30,6 +40,7 @@
     </header>
     <main>
         <p>This is a basic HTML page template with a simple layout.</p>
+        <p id="debug" style="font-weight: bold; color: red;">Debug</p>
     </main>
     <footer>
         <p>&copy; 2025 My Website</p>
