@@ -31,24 +31,18 @@
         }
 </style>
 <script>
+    let num = -1;
+
     function debug(msg) {
         document.getElementById("debug").innerText = msg;
     }
 
+    function updateNum() {
+        num++;
+        debug(`Number is ${num}`);
+    }
     window.onload = function() {
-        let toggleBtns = Array.from(document.getElementsByClassName("toggle-btn"));
-        toggleBtns.forEach(function(btn, idx) {
-            btn.dataset.toggled = "yes";
-
-            let listener =  function() {
-                console.log(`Was ${btn.dataset.toggled}`);
-                btn.style.backgroundColor = (btn.dataset.toggled === "no") ? "#999" : "#444";
-                btn.dataset.toggled = (btn.dataset.toggled === "yes") ? "no"  : "yes";
-                console.log(`- Now is ${btn.dataset.toggled}`);
-            }
-            btn.addEventListener('click', listener);
-            btn.addEventListener('touchstart', listener);
-        });
+        updateNum();
     }
 </script>
 </head>
@@ -57,7 +51,7 @@
         <h1>Welcome to my Minigames Page</h1>
     </header>
     <main>
-        <div class="toggle-btn"></div>
+        <button onclick="updateNum();">Increment count</button>
     </main>
     <footer>
         <p>&copy; Iteration 4</p>
