@@ -27,10 +27,11 @@
     function debug(msg) {
         document.getElementById("debug").innerText = msg;
     }
-    document.addEventListener("click", function(event) {
-    if (event.target.tagName === "BUTTON") {
-        debug(`Button clicked: ${event.target}`);
-    }
+
+    document.addEventListener("keydown", function(event) {
+        debug(`Key pressed: ${event.key}`);
+    });
+
 });
 </script>
 </head>
