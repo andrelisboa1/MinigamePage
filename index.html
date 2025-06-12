@@ -39,12 +39,15 @@
         let toggleBtns = Array.from(document.getElementsByClassName("toggle-btn"));
         toggleBtns.forEach(function(btn, idx) {
             btn.dataset.toggled = "yes";
-            btn.addEventListener('click', function() {
+
+            let listener =  function() {
                 console.log(`Was ${btn.dataset.toggled}`);
                 btn.style.backgroundColor = (btn.dataset.toggled === "no") ? "#999" : "#444";
                 btn.dataset.toggled = (btn.dataset.toggled === "yes") ? "no"  : "yes";
                 console.log(`- Now is ${btn.dataset.toggled}`);
-            });
+            }
+            btn.addEventListener('click', listener);
+            btn.addEventListener('touchstart', listener);
         });
     }
 </script>
