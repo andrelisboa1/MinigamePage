@@ -2,58 +2,62 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=600, initial-scale=1.0">
     <title>My Simple Page</title>
     <style>
         body {
             font-family: Arial, sans-serif;
-            margin: 20px;
-            padding: 20px;
-            background-color: #f4f4f4;
+            margin: 10px;
+            padding: 0;
+            background: #fff;
+            color: #000;
         }
         header, footer {
-            background-color: #333;
-            color: white;
-            padding: 10px;
+            background: #222;
+            color: #fff;
+            padding: 8px 0;
             text-align: center;
         }
         main {
-            padding: 20px;
-            background-color: white;
-            border-radius: 5px;
+            padding: 10px;
+            background: #fff;
+            border-radius: 0;
         }
-
-        .toggle-btn {
-            width: 4vw;
-            height: 4vw;
-            border: 1pt solid black;
-            background-color: #444;
-        }
-
         .big-link {
-            height: 24pt;
-            font-size: 14pt;
-            background-color: #aaa;
-            color: blue;
+            display: inline-block;
+            padding: 12px 24px;
+            font-size: 1.2em;
+            border: 1px solid #888;
+            color: #000;
+            background: #eee;
+            text-decoration: none;
+            margin-top: 16px;
+            border-radius: 4px;
+        }
+        .big-link:active {
+            background: #ccc;
+        }
+        #debug {
+            font-size: 1.1em;
+            margin-bottom: 16px;
         }
     </style>
     <script>
-        let num = -1;
-
+        var num = -1;
         function debug(msg) {
-            document.getElementById("debug").innerText = msg;
+            var dbg = document.getElementById("debug");
+            if (dbg) dbg.innerText = msg;
         }
-
         function updateNum() {
             num++;
-            debug(`Number is ${num}`);
+            debug("Number is " + num);
         }
         window.onload = function() {
-            updateNum();
-        }
+            debug("Number is " + num);
+        };
     </script>
 </head>
-<body onload="updateNum();">
+<body>
     <header>
         <h1>Welcome to my Minigames Page</h1>
     </header>
@@ -63,7 +67,7 @@
     </main>
     <noscript><div>whoops, no js for u</div></noscript>
     <footer>
-        <p>&copy; Iteration 6</p>
+        <p>&copy; Iteration 7</p>
     </footer>
 </body>
 </html>
