@@ -28,9 +28,12 @@
         document.getElementById("debug").innerText = msg;
     }
 
-    document.addEventListener("keydown", function(event) {
-        debug(`Key pressed: ${event.key}`);
-    });
+    for (const key in target) {
+        if(/^on/.test(key)) {
+            const eventType = key.substr(2);
+            target.addEventListener(eventType, function(e){ debug(`${e}`); });
+        }
+    }
 
 });
 </script>
@@ -44,7 +47,7 @@
         <p id="debug" style="font-weight: bold; color: red;">Debug</p>
     </main>
     <footer>
-        <p>&copy; 2025 My Website</p>
+        <p>&copy; Iteration 2</p>
     </footer>
 </body>
 </html>
