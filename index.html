@@ -23,7 +23,17 @@
             background: #fff;
             border-radius: 0;
         }
-        .big-link {
+        #move-box {
+            width: 60px;
+            height: 60px;
+            background: #4af;
+            position: relative;
+            left: 0;
+            margin-top: 32px;
+            border-radius: 8px;
+            transition: left 0.2s;
+        }
+        .move-link {
             display: inline-block;
             padding: 12px 24px;
             font-size: 1.2em;
@@ -31,29 +41,24 @@
             color: #000;
             background: #eee;
             text-decoration: none;
-            margin-top: 16px;
+            margin: 8px 12px 0 0;
             border-radius: 4px;
         }
-        .big-link:active {
+        .move-link:active {
             background: #ccc;
-        }
-        #debug {
-            font-size: 1.1em;
-            margin-bottom: 16px;
         }
     </style>
     <script>
-        var num = -1;
-        function debug(msg) {
-            var dbg = document.getElementById("debug");
-            if (dbg) dbg.innerText = msg;
-        }
-        function updateNum() {
-            num++;
-            debug("Number is " + num);
+        var position = 0;
+        function moveBox(dir) {
+            position += dir * 20;
+            var box = document.getElementById("move-box");
+            if (box) box.style.left = position + "px";
         }
         window.onload = function() {
-            debug("Number is " + num);
+            // Optionally reset position
+            var box = document.getElementById("move-box");
+            if (box) box.style.left = position + "px";
         };
     </script>
 </head>
@@ -62,8 +67,9 @@
         <h1>Welcome to my Minigames Page</h1>
     </header>
     <main>
-        <div id="debug">no updates yet, sad</div>
-        <a class="big-link" href="#" onclick="updateNum(); return false;">Increment count</a>
+        <a class="move-link" href="#" onclick="moveBox(-1); return false;">Left</a>
+        <a class="move-link" href="#" onclick="moveBox(1); return false;">Right</a>
+        <div id="move-box"></div>
     </main>
     <noscript><div>whoops, no js for u</div></noscript>
     <footer>
