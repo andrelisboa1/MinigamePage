@@ -35,6 +35,21 @@
             left: 0;
             top: 0;
             border-radius: 8px;
+            color: #000;
+
+            text-align: center;
+        }
+        #apple {
+            width: 32pt;
+            height: 32pt;
+            background: #f00;
+            position: relative;
+            left: 0;
+            top: 0;
+            border-radius: 16pt;
+            color: #0f0;
+
+            text-align: center;
         }
         .move-link {
             display: inline-block;
@@ -68,9 +83,20 @@
             }
         }
     };
+    var appleData = {
+        x: 5, y: 3,
+        updateElem: function() {
+            var apple = document.getElementById("apple");
+            if (apple) {
+                apple.style.left = appleData.x * 32 + "pt";
+                apple.style.top = appleData.y * 32 + "pt";
+            }
+        }
+    };
     var count = 0;
     window.onload = function() {
         boxData.updateElem();
+        appleData.updateElem();
         setInterval(function(){
             /*
             var counter = document.getElementById("counter");
@@ -78,6 +104,7 @@
             if (counter) counter.innerHTML = count;
             */
             boxData.updateElem();
+            appleData.updateElem();
         }, 250);
     };
     </script>
@@ -85,15 +112,15 @@
 <body>
     <header>
         <h1>Welcome to my Minigames Page</h1>
-        <h2 id="counter">0</h2>
+        <h2 id="counter">Apples eaten: 0</h2>
     </header>
     <main>
         <!--
         
         
         -->
-        <div id="move-box"></div>
-        
+        <div id="move-box">'-'</div>
+        <div id="apple">&acute;</div>
 
     </main>
     <div style="display: flex; flex-direction: row; height: 32pt;">
