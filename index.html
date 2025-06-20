@@ -75,6 +75,8 @@
     </style>
     <script>
         // ES3 style.
+        var GRID_WIDTH = 18;
+        var GRID_HEIGHT = 8;
     var boxData = {
         x: 0, y: 0,
         updateElem: function() {
@@ -100,14 +102,19 @@
         boxData.updateElem();
         appleData.updateElem();
         setInterval(function(){
-            /*
-            var counter = document.getElementById("counter");
-            count++;
-            if (counter) counter.innerHTML = count;
-            */
             boxData.updateElem();
             appleData.updateElem();
-        }, 250);
+
+            // Collision check.
+            if (boxData.x === appleData.x && boxData.y === appleData.y) {
+                // Teleports the apple to a place at random.
+                appleData.x = Math.floor(Math.random() * GRID_WIDTH);
+                appleData.y = Math.floor(Math.random() * GRID_HEIGHT);
+                count++;
+                document.getElementById("counter").innerHTML = "Apples eaten: " + count;
+            };
+        }, 100);
+
     };
     </script>
 </head>
