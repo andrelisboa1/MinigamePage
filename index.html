@@ -59,8 +59,8 @@
         updateElem: function() {
             var box = document.getElementById("move-box");
             if (box) {
-                box.style.left = boxData.x + "pt";
-                box.style.top = boxData.y + "pt";
+                box.style.left = boxData.x * 32 + "pt";
+                box.style.top = boxData.y * 32 + "pt";
             }
         }
     };
@@ -72,7 +72,7 @@
             count++;
             if (counter) counter.innerHTML = count;
             boxData.updateElem();
-        }, 100);
+        }, 250);
     };
     </script>
 </head>
