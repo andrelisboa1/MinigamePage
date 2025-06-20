@@ -17,6 +17,7 @@
             color: #fff;
             padding: 8px 0;
             text-align: center;
+            height: 11%;
         }
         main {
             margin-top: 4pt;
@@ -24,12 +25,12 @@
             background: #ddd;
             border: 1pt solid black;
             border-radius: 0;
-            height: 256px;
+            height: 256pt;
         }
         #move-box {
-            width: 60px;
-            height: 60px;
-            background: #4af;
+            width: 32pt;
+            height: 32pt;
+            background: #888;
             position: relative;
             left: 0;
             margin-top: 32px;
@@ -53,7 +54,16 @@
     </style>
     <script>
         // ES3 style.
-        var position = 0;
+        var boxData = {
+            x: 0, y: 0,
+            updateElem: function() {
+                var box = document.getElementById("move-box");
+                if (box) {
+                    box.style.left = x + "pt";
+                    box.style.top = y + "pt";
+                }
+            }
+        };
         var count = 0;
         /*
         function moveBox(dir) {
@@ -68,11 +78,13 @@
             var box = document.getElementById("move-box");
             if (box) box.style.left = position + "px";
             */
+           boxData.updateElem();
             setInterval(function(){
                 var counter = document.getElementById("counter");
                 count++;
                 counter.innerHTML = count;
-            }, 1000);
+                box.updateElem();
+            }, 100);
         };
     </script>
 </head>
@@ -83,10 +95,15 @@
     </header>
     <main>
         <!--
-        <a class="move-link" href="#" onclick="moveBox(-1); return false;">Left</a>
-        <a class="move-link" href="#" onclick="moveBox(1); return false;">Right</a>
-        <div id="move-box"></div>
+        
+        
         -->
+        <div id="move-box"></div>
+        <a class="move-link" href="#" onclick="boxData.x--; return false;">._</a>
+        <a class="move-link" href="#" onclick="boxData.y--; return false;">'</a>
+        <a class="move-link" href="#" onclick="boxData.y++; return false;">,</a>
+        <a class="move-link" href="#" onclick="boxData.x++; return false;">_.</a>
+
     </main>
     <footer>
         <p>&copy; Iteration 7</p>
