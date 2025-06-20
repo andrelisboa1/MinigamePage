@@ -50,6 +50,7 @@
     </style>
     <script>
         var position = 0;
+        var count = 0;
         function moveBox(dir) {
             position += dir * 20;
             var box = document.getElementById("move-box");
@@ -59,12 +60,19 @@
             // Optionally reset position
             var box = document.getElementById("move-box");
             if (box) box.style.left = position + "px";
+
+            setInterval(function(){
+                var counter = document.getElementById("counter");
+                count++;
+                counter.innerHTML = count;
+            }, 1000);
         };
     </script>
 </head>
 <body>
     <header>
         <h1>Welcome to my Minigames Page</h1>
+        <h2 id="counter">0</h2>
     </header>
     <main>
         <a class="move-link" href="#" onclick="moveBox(-1); return false;">Left</a>
