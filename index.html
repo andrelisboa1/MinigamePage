@@ -111,8 +111,10 @@
                 appleData.x = Math.floor(Math.random() * GRID_WIDTH);
                 appleData.y = Math.floor(Math.random() * GRID_HEIGHT);
                 count++;
-                document.getElementById("counter").innerHTML = "Apples eaten: " + count;
+                
             };
+
+            document.getElementById("counter").innerHTML = "Apples eaten: " + count + " | Player " + boxData.x + "," + boxData.y + " | Apple " + appleData.x + "," + appleData.y;
         }, 100);
 
     };
@@ -121,7 +123,7 @@
 <body>
     <header>
         <h1>Welcome to my Minigames Page</h1>
-        <h2 id="counter">Apples eaten: 0</h2>
+        <h3 id="counter">Apples eaten: 0</h3>
     </header>
     <main>
         <!--
