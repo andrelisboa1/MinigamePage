@@ -19,9 +19,12 @@
             text-align: center;
         }
         main {
-            padding: 10px;
-            background: #fff;
+            margin-top: 4pt;
+            margin-bottom: 4pt;
+            background: #ddd;
+            border: 1pt solid black;
             border-radius: 0;
+            height: 256px;
         }
         #move-box {
             width: 60px;
@@ -49,18 +52,22 @@
         }
     </style>
     <script>
+        // ES3 style.
         var position = 0;
         var count = 0;
+        /*
         function moveBox(dir) {
             position += dir * 20;
             var box = document.getElementById("move-box");
             if (box) box.style.left = position + "px";
         }
+        */
         window.onload = function() {
             // Optionally reset position
+            /*
             var box = document.getElementById("move-box");
             if (box) box.style.left = position + "px";
-
+            */
             setInterval(function(){
                 var counter = document.getElementById("counter");
                 count++;
@@ -75,11 +82,12 @@
         <h2 id="counter">0</h2>
     </header>
     <main>
+        <!--
         <a class="move-link" href="#" onclick="moveBox(-1); return false;">Left</a>
         <a class="move-link" href="#" onclick="moveBox(1); return false;">Right</a>
         <div id="move-box"></div>
+        -->
     </main>
-    <noscript><div>whoops, no js for u</div></noscript>
     <footer>
         <p>&copy; Iteration 7</p>
     </footer>
