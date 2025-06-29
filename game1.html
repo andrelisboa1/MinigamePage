@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=600, initial-scale=1.0">
-    <title>Snake Game</title>
+    <title>My Simple Page</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -11,195 +11,138 @@
             padding: 0;
             background: #fff;
             color: #000;
-            text-align: center;
         }
         header, footer {
             background: #222;
             color: #fff;
             padding: 8px 0;
             text-align: center;
+            height: 11%;
         }
         main {
-            padding: 10px;
-            background: #fff;
+            margin-top: 4pt;
+            margin-bottom: 4pt;
+            background: #ddd;
+            border: 1pt solid black;
             border-radius: 0;
+            height: 256pt;
         }
-        #snake-canvas {
-            background: #fff;
-            border: 1px solid #222;
-            margin: 0 auto 12px auto;
-            display: block;
-        }
-        .btn-row {
-            margin: 8px 0;
-        }
-        .dir-btn {
-            display: inline-block;
-            width: 48px;
-            height: 48px;
-            font-size: 2em;
-            background: #eee;
-            border: 1px solid #888;
+        #move-box {
+            font-size: 18pt;
+            width: 32pt;
+            height: 32pt;
+            background: #888;
+            position: relative;
+            left: 0;
+            top: 0;
             border-radius: 8px;
-            margin: 2px;
-            user-select: none;
+            color: #000;
+
+            text-align: center;
         }
-        .dir-btn:active {
+        #apple {
+            font-size: 32pt;
+            width: 32pt;
+            height: 32pt;
+            background: #f00;
+            position: relative;
+            left: 0;
+            top: 0;
+            border-radius: 16pt;
+            color: #0f0;
+
+            text-align: center;
+        }
+        .move-link {
+            display: inline-block;
+            font-family: monospace;
+            font-weight: bold;
+            text-align: center;
+            width: 32pt;
+            height: 32pt;
+            font-size: 1.2em;
+            border: 1px solid #888;
+            color: #000;
+            background: #eee;
+            text-decoration: none;
+            margin-right: 4pt;
+            margin-bottom: 2pt;
+            border-radius: 4px;
+        }
+        .move-link:active {
             background: #ccc;
-        }
-        #score {
-            font-size: 1.1em;
-            margin-bottom: 8px;
         }
     </style>
     <script>
-        // Snake game for Kobo (monochrome, touch)
-        const gridSize = 16;
-        const cellSize = 16;
-        const canvasSize = gridSize * cellSize;
-        let snake, dir, nextDir, food, alive, score, moveTimer;
-
-        function resetGame() {
-            snake = [{x: 8, y: 8}];
-            dir = {x: 1, y: 0};
-            nextDir = dir;
-            food = placeFood();
-            alive = true;
-            score = 0;
-            updateScore();
-        }
-
-        function placeFood() {
-            let pos;
-            do {
-                pos = {
-                    x: Math.floor(Math.random() * gridSize),
-                    y: Math.floor(Math.random() * gridSize)
-                };
-            } while (snake.some(s => s.x === pos.x && s.y === pos.y));
-            return pos;
-        }
-
-        function updateScore() {
-            document.getElementById('score').textContent = "Score: " + score;
-        }
-
-        function draw() {
-            const ctx = document.getElementById('snake-canvas').getContext('2d');
-            ctx.clearRect(0, 0, canvasSize, canvasSize);
-            // Draw food
-            ctx.fillStyle = "#000";
-            ctx.fillRect(food.x * cellSize, food.y * cellSize, cellSize, cellSize);
-            // Draw snake
-            ctx.fillStyle = "#888";
-            snake.forEach((s, i) => {
-                ctx.fillRect(s.x * cellSize, s.y * cellSize, cellSize, cellSize);
-            });
-        }
-
-        function move() {
-            if (!alive) return;
-            dir = nextDir;
-            const head = {x: snake[0].x + dir.x, y: snake[0].y + dir.y};
-            // Check wall collision
-            if (head.x < 0 || head.x >= gridSize || head.y < 0 || head.y >= gridSize) {
-                alive = false;
-                showGameOver();
-                return;
-            }
-            // Check self collision
-            if (snake.some(s => s.x === head.x && s.y === head.y)) {
-                alive = false;
-                showGameOver();
-                return;
-            }
-            snake.unshift(head);
-            // Eat food
-            if (head.x === food.x && head.y === food.y) {
-                score++;
-                updateScore();
-                food = placeFood();
-            } else {
-                snake.pop();
-            }
-            draw();
-        }
-
-        function showGameOver() {
-            setTimeout(() => {
-                const ctx = document.getElementById('snake-canvas').getContext('2d');
-                ctx.fillStyle = "#000";
-                ctx.font = "bold 20px Arial";
-                ctx.textAlign = "center";
-                ctx.fillText("Game Over", canvasSize/2, canvasSize/2);
-            }, 100);
-        }
-
-        function setDirection(dx, dy) {
-            // Prevent reversing
-            if (!alive) return;
-            if (dx === -dir.x && dy === -dir.y) return;
-            nextDir = {x: dx, y: dy};
-        }
-
-        function gameLoop() {
-            move();
-            if (alive) {
-                moveTimer = setTimeout(gameLoop, 180);
+        // ES3 style.
+        var GRID_WIDTH = 18;
+        var GRID_HEIGHT = 8;
+    var boxData = {
+        x: 1, y: 1,
+        updateElem: function() {
+            var box = document.getElementById("move-box");
+            if (box) {
+                box.style.left = boxData.x * 32 + "pt";
+                box.style.top = boxData.y * 32 + "pt";
             }
         }
+    };
+    var appleData = {
+        x: 2, y: 2,
+        updateElem: function() {
+            var apple = document.getElementById("apple");
+            if (apple) {
+                apple.style.left = appleData.x * 32 + "pt";
+                apple.style.top = appleData.y * 32 + "pt";
+            }
+        }
+    };
+    var count = 0;
+    window.onload = function() {
+        boxData.updateElem();
+        appleData.updateElem();
+        setInterval(function(){
+            boxData.updateElem();
+            appleData.updateElem();
 
-        window.onload = function() {
-            const canvas = document.getElementById('snake-canvas');
-            canvas.width = canvasSize;
-            canvas.height = canvasSize;
-            resetGame();
-            draw();
-            if (moveTimer) clearTimeout(moveTimer);
-            moveTimer = setTimeout(gameLoop, 400);
-
-            // Touch controls for Kobo
-            document.getElementById('btn-up').ontouchstart = function(e){ e.preventDefault(); setDirection(0,-1); };
-            document.getElementById('btn-down').ontouchstart = function(e){ e.preventDefault(); setDirection(0,1); };
-            document.getElementById('btn-left').ontouchstart = function(e){ e.preventDefault(); setDirection(-1,0); };
-            document.getElementById('btn-right').ontouchstart = function(e){ e.preventDefault(); setDirection(1,0); };
-
-            // Mouse fallback
-            document.getElementById('btn-up').onclick = function(){ setDirection(0,-1); };
-            document.getElementById('btn-down').onclick = function(){ setDirection(0,1); };
-            document.getElementById('btn-left').onclick = function(){ setDirection(-1,0); };
-            document.getElementById('btn-right').onclick = function(){ setDirection(1,0); };
-
-            document.getElementById('restart-btn').onclick = function() {
-                resetGame();
-                draw();
-                if (moveTimer) clearTimeout(moveTimer);
-                moveTimer = setTimeout(gameLoop, 400);
+            // Collision check.
+            if (boxData.x === appleData.x && boxData.y === appleData.y) {
+                // Teleports the apple to a place at random.
+                appleData.x = Math.floor(Math.random() * GRID_WIDTH);
+                appleData.y = Math.floor(Math.random() * GRID_HEIGHT);
+                count++;
+                
             };
-        };
+
+            document.getElementById("counter").innerHTML = "Apples eaten: " + count + " | Player " + boxData.x + "," + boxData.y + " | Apple " + appleData.x + "," + appleData.y;
+        }, 100);
+
+    };
     </script>
 </head>
 <body>
     <header>
-        <h1>Snake Game</h1>
+        <h1>Welcome to my Minigames Page</h1>
+        <h3 id="counter">Apples eaten: 0</h3>
     </header>
     <main>
-        <div id="score">Score: 0</div>
-        <canvas id="snake-canvas"></canvas>
-        <div class="btn-row">
-            <button class="dir-btn" id="btn-up">&#8593;</button>
-        </div>
-        <div class="btn-row">
-            <button class="dir-btn" id="btn-left">&#8592;</button>
-            <button class="dir-btn" id="btn-down">&#8595;</button>
-            <button class="dir-btn" id="btn-right">&#8594;</button>
-        </div>
-        <div style="margin-top:10px;">
-            <button id="restart-btn" class="dir-btn" style="width:120px;">Restart</button>
-        </div>
+        <!--
+        
+        
+        -->
+        <div id="apple">&acute;</div>
+        <div id="move-box">'-'</div>
+        
+
     </main>
+    <div style="display: flex; flex-direction: row; height: 32pt;">
+        <a class="move-link" href="#" onclick="boxData.x--; return false;">&lt;</a>
+        <a class="move-link" href="#" onclick="boxData.y--; return false;">&circ;</a>
+        <a class="move-link" href="#" onclick="boxData.y++; return false;">v</a>
+        <a class="move-link" href="#" onclick="boxData.x++; return false;">&gt;</a>
+    </div>
     <footer>
-        <p>&copy; Iteration 7</p>
+        <p>games, nice!</p>
     </footer>
 </body>
 </html>
