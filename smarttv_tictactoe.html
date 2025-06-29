@@ -59,8 +59,9 @@
       }
 
       .game-cell {
-        width: 12vh;
-        height: 12vh;
+        --cell-size: 12vh;
+        width: var(--cell-size);
+        height: var(--cell-size);
 
         border: 1pt solid black;
         background-color: white;
@@ -70,9 +71,9 @@
         margin-right: 1pt;
 
         text-align: center;
-        line-height: 12vh;
+        line-height: var(--cell-size);
         color: black;
-        font-size: 11vh;
+        font-size: calc(var(--cell-size) * 0.75);
       }
       
     </style>
