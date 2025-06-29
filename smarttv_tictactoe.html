@@ -160,7 +160,7 @@
           } else if (oWin) {
             document.getElementById("play-header").innerText = "===== O has won! =====";
             setTimeout(function(){resetGame();}, 3000);
-          } else if (currentGameState.filter(elem => elem === " ")) {
+          } else if (currentGameState.filter(elem => elem === " ").length === 0) {
             document.getElementById("play-header").innerText = "===== It was a tie! :( =====";
             setTimeout(function(){resetGame();}, 3000);
           } else {
