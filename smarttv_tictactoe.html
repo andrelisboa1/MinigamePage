@@ -5,6 +5,9 @@
     <meta name="viewport" content="width=600, initial-scale=1.0">
     <title>My Simple Page</title>
     <style>
+      * {
+        --hf-height: 12vh;
+      }
       body {
         font-family: Arial, sans-serif;
         margin: 0;
@@ -17,7 +20,7 @@
         color: #ddd;
         padding: 8px 0;
         text-align: center;
-        height: 10vh;
+        height: var(--hf-height);
       }  
       main {
         margin-top: 4pt;
@@ -25,10 +28,10 @@
         background: #ddd;
         border: 1pt solid black;
         border-radius: 0;
-        height: 79vh;
+        height: calc(100vh - var(--hf-height)*2);
 
         display: flex;
-        flex-direction: row;
+        flex-direction: column;
         justify-content: center;
           align-items: center;
       }
