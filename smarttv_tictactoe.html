@@ -149,14 +149,16 @@
                      verifyCells(currentGameState, "O", [2, 4, 6]);
 
           if (xWin) {
-            document.getElementById("play-header").innerText = "X has won!";
+            document.getElementById("play-header").innerText = "===== X has won! =====";
             setTimeout(function(){resetGame();}, 1000);
           } else if (oWin) {
-            document.getElementById("play-header").innerText = "O has won!";
+            document.getElementById("play-header").innerText = "===== O has won! =====";
             setTimeout(function(){resetGame();}, 1000);
+          } else {
+            flipSymbol();
           }
           
-          flipSymbol();
+          
         }
     </script>
 </head>
