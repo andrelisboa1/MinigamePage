@@ -94,7 +94,7 @@
 
         function workOnCell(elem) {
             let id = elem.id;
-            if (!(elem.innerText === "X" or elem.innerText === "O")) return;
+            if (elem.innerText === "X" or elem.innerText === "O") return;
             elem.innerText = currentSymbol;
             elem.style.backgroundColor = "#ddd";
             flipSymbol();
@@ -109,19 +109,19 @@
     <main>
         <div id="game-div">
           <div class="game-row">
-            <div class="game-cell" id="gc-1"></div>
-            <div class="game-cell" id="gc-2"></div>
-            <div class="game-cell" id="gc-3"></div>
+            <div class="game-cell" id="gc-1" onclick="workOnCell(this)"></div>
+            <div class="game-cell" id="gc-2" onclick="workOnCell(this)"></div>
+            <div class="game-cell" id="gc-3" onclick="workOnCell(this)"></div>
           </div>
           <div class="game-row">
-            <div class="game-cell" id="gc-4"></div>
-            <div class="game-cell" id="gc-5"></div>
-            <div class="game-cell" id="gc-6"></div>
+            <div class="game-cell" id="gc-4" onclick="workOnCell(this)"></div>
+            <div class="game-cell" id="gc-5" onclick="workOnCell(this)"></div>
+            <div class="game-cell" id="gc-6" onclick="workOnCell(this)"></div>
           </div>
           <div class="game-row">
-            <div class="game-cell" id="gc-7"></div>
-            <div class="game-cell" id="gc-8"></div>
-            <div class="game-cell" id="gc-9"></div>
+            <div class="game-cell" id="gc-7" onclick="workOnCell(this)"></div>
+            <div class="game-cell" id="gc-8" onclick="workOnCell(this)"></div>
+            <div class="game-cell" id="gc-9" onclick="workOnCell(this)"></div>
           </div>
         </div>
         <br/>
