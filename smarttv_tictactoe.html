@@ -86,7 +86,11 @@
     </style>
     <script>
         let currentSymbol = "X";
-        
+
+        function getCell(num) {
+          return document.getElementById(`gc-${num}`);
+        }
+      
         function getGameState() {
           let outp = [" ", " ", " ", " ", " ", " ", " ", " ", " "];
 
@@ -113,7 +117,7 @@
           for (let i = 0; i < 9; i++) {
             let cell = document.getElementById(`gc-${i+1}`);
             cell.style.backgroundColor = "white";
-            cell.innerText = "";
+            cell.innerText = `${i+1}`;
           }
           currentSymbol = "X";
           document.getElementById("play-header").innerText = `Playing with: ${currentSymbol}`;
@@ -164,10 +168,18 @@
         }
 
         document.addEventListener('keydown', function(event) {
-          const code = event.code || event.keyCode || "(unknown)";
-          const key = event.key || "(unknown)";
-          document.getElementById('key-debug').innerText = `Last KeyCode: ${code} (key: ${key})`;
+          let code = event.code || event.keyCode || "(unknown)";
+          let key = event.key || "(unknown)";
+          let validKeys = ["1", "2", "3", "4", "5", "6", "7", "8", "9"];
+          //document.getElementById('key-debug').innerText = `Last KeyCode: ${code} (key: ${key})`;
+          if (validKeys.includes(key)) {
+            workOnCell(getCell(key));
+          }
         });
+
+        window.onload = function() {
+          resetGame();  
+        };
     </script>
 </head>
 <body>
@@ -199,7 +211,7 @@
        
     </main>
     <footer>
-        <p>Iteration 3</p>
+        <p>Iteration 4</p>
     </footer>
 </body>
 </html>
