@@ -107,15 +107,15 @@
             let id = elem.id;
             if (elem.innerText === "X" || elem.innerText === "O") return;
             elem.innerText = currentSymbol;
-            elem.style.backgroundColor = "#ddd";
+            elem.style.backgroundColor = (currentSymbol === "X") ? "#ddd" : "#bbb";
             flipSymbol();
         }
     </script>
 </head>
 <body>
     <header>
-        <h1>Tic-Tac-Toe</h1>
-        <h2 id="play-header">Playing with: X</h2>
+        <h2>Tic-Tac-Toe</h2>
+        <h3 id="play-header">Playing with: X</h3>
     </header>
     <main>
         <div id="game-div">
