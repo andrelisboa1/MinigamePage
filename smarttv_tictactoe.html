@@ -162,6 +162,12 @@
           
           
         }
+
+        document.addEventListener('keydown', function(event) {
+          const code = event.code || event.keyCode || "(unknown)";
+          const key = event.key || "(unknown)";
+          document.getElementById('key-debug').innerText = `Last KeyCode: ${code} (key: ${key})`;
+        });
     </script>
 </head>
 <body>
@@ -189,9 +195,11 @@
         </div>
         <br/>
         <div><a href="https://andrelisboa1.github.io/MinigamePage/smarttv">Go Back</a></div>
+      <div id="key-debug" style="margin-top:10px; color: #333;">Last KeyCode: (none)</div>
+       
     </main>
     <footer>
-        <p>Iteration 2</p>
+        <p>Iteration 3</p>
     </footer>
 </body>
 </html>
