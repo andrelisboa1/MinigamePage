@@ -7,6 +7,7 @@
     <style>
       * {
         --hf-height: 12vh;
+        --hf-vpadding: 8pt;
       }
       body {
         font-family: Arial, sans-serif;
@@ -18,9 +19,9 @@
       header, footer {
         background: #333;
         color: #ddd;
-        padding: 8px 0;
+        padding: var(--hf-vpadding) 0;
         text-align: center;
-        height: var(--hf-height);
+        height: calc(var(--hf-height) - var(--hf-vpadding));
       }  
       main {
         margin-top: 4pt;
