@@ -27,120 +27,26 @@
             border-radius: 0;
             height: 256pt;
         }
-        #move-box {
-            font-size: 18pt;
-            width: 32pt;
-            height: 32pt;
-            background: #888;
-            position: relative;
-            left: 0;
-            top: 0;
-            border-radius: 8px;
-            color: #000;
+        a {
+            height: 24pt;
+            padding: 2pt;
 
-            text-align: center;
+            color: #aaa;
+            background-color: #333;
         }
-        #apple {
-            font-size: 32pt;
-            width: 32pt;
-            height: 32pt;
-            background: #f00;
-            position: relative;
-            left: 0;
-            top: 0;
-            border-radius: 16pt;
-            color: #0f0;
-
-            text-align: center;
-        }
-        .move-link {
-            display: inline-block;
-            font-family: monospace;
-            font-weight: bold;
-            text-align: center;
-            width: 32pt;
-            height: 32pt;
-            font-size: 1.2em;
-            border: 1px solid #888;
-            color: #000;
-            background: #eee;
-            text-decoration: none;
-            margin-right: 4pt;
-            margin-bottom: 2pt;
-            border-radius: 4px;
-        }
-        .move-link:active {
-            background: #ccc;
-        }
+        
     </style>
-    <script>
-        // ES3 style.
-        var GRID_WIDTH = 18;
-        var GRID_HEIGHT = 8;
-    var boxData = {
-        x: 1, y: 1,
-        updateElem: function() {
-            var box = document.getElementById("move-box");
-            if (box) {
-                box.style.left = boxData.x * 32 + "pt";
-                box.style.top = boxData.y * 32 + "pt";
-            }
-        }
-    };
-    var appleData = {
-        x: 2, y: 2,
-        updateElem: function() {
-            var apple = document.getElementById("apple");
-            if (apple) {
-                apple.style.left = appleData.x * 32 + "pt";
-                apple.style.top = appleData.y * 32 + "pt";
-            }
-        }
-    };
-    var count = 0;
-    window.onload = function() {
-        boxData.updateElem();
-        appleData.updateElem();
-        setInterval(function(){
-            boxData.updateElem();
-            appleData.updateElem();
-
-            // Collision check.
-            if (boxData.x === appleData.x && boxData.y === appleData.y) {
-                // Teleports the apple to a place at random.
-                appleData.x = Math.floor(Math.random() * GRID_WIDTH);
-                appleData.y = Math.floor(Math.random() * GRID_HEIGHT);
-                count++;
-                
-            };
-
-            document.getElementById("counter").innerHTML = "Apples eaten: " + count + " | Player " + boxData.x + "," + boxData.y + " | Apple " + appleData.x + "," + appleData.y;
-        }, 100);
-
-    };
-    </script>
+    
 </head>
 <body>
     <header>
         <h1>Welcome to my Minigames Page</h1>
-        <h3 id="counter">Apples eaten: 0</h3>
+        <h2>Choose the platform you are accessing this page with</h2>
     </header>
     <main>
-        <!--
-        
-        
-        -->
-        <div id="apple">&acute;</div>
-        <div id="move-box">'-'</div>
-        
-
+        <a href="/ereader.html">E-Reader</a>
+        <a href="/smarttv.html">Smart TV</a>
     </main>
-    <div style="display: flex; flex-direction: row; height: 32pt;">
-        <a class="move-link" href="#" onclick="boxData.x--; return false;">&lt;</a>
-        <a class="move-link" href="#" onclick="boxData.y--; return false;">&circ;</a>
-        <a class="move-link" href="#" onclick="boxData.y++; return false;">v</a>
-        <a class="move-link" href="#" onclick="boxData.x++; return false;">&gt;</a>
-    </div>
     <footer>
         <p>games, nice!</p>
     </footer>
