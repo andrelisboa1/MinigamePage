@@ -8,6 +8,7 @@
       * {
         --hf-height: 12vh;
         --hf-vpadding: 8pt;
+        --m-vmargin: 4pt;
       }
       body {
         font-family: Arial, sans-serif;
@@ -21,15 +22,15 @@
         color: #ddd;
         padding: var(--hf-vpadding) 0;
         text-align: center;
-        height: calc(var(--hf-height) - var(--hf-vpadding));
+        height: calc(var(--hf-height) - var(--hf-vpadding)*2);
       }  
       main {
-        margin-top: 4pt;
-        margin-bottom: 4pt;
+        margin-top: var(--m-vmargin);
+        margin-bottom: var(--m-vmargin);
         background: #ddd;
         border: 1pt solid black;
         border-radius: 0;
-        height: calc(99vh - var(--hf-height)*2);
+        height: calc(100vh - var(--hf-height)*2 - var(--m-vmargin)*2 - 1pt);
 
         display: flex;
         flex-direction: column;
