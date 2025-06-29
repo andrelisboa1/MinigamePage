@@ -6,7 +6,7 @@
     <title>My Simple Page</title>
     <style>
       * {
-        --hf-height: 13vh;
+        --hf-height: 15vh;
         --hf-vpadding: 8pt;
         --m-vmargin: 4pt;
       }
@@ -150,10 +150,10 @@
 
           if (xWin) {
             document.getElementById("play-header").innerText = "===== X has won! =====";
-            setTimeout(function(){resetGame();}, 1000);
+            setTimeout(function(){resetGame();}, 3000);
           } else if (oWin) {
             document.getElementById("play-header").innerText = "===== O has won! =====";
-            setTimeout(function(){resetGame();}, 1000);
+            setTimeout(function(){resetGame();}, 3000);
           } else {
             flipSymbol();
           }
