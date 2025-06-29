@@ -86,29 +86,77 @@
         let currentSymbol = "X";
         
         function getGameState() {
-            let outp = [" ", " ", " ", " ", " ", " ", " ", " ", " "];
+          let outp = [" ", " ", " ", " ", " ", " ", " ", " ", " "];
 
-            for (let i = 0; i < 9; i++) {
-                let content = document.getElementById(`gc-${i+1}`).innerText;
-                if (content === "O" || content === "X") {
-                    outp[i] = content;
-                }
+          for (let i = 0; i < 9; i++) {
+            let content = document.getElementById(`gc-${i+1}`).innerText;
+            if (content === "O" || content === "X") {
+              outp[i] = content;
             }
+          }
 
-            return outp;
+          return outp;
         }
 
+      function verifyCells(state, symbol, cellIndices) {
+        let outp = true;
+        for (let i = 0; i < cellIndices.length; i++) {
+          if (state[cellIndices[i]] !== symbol) outp = false;
+        }
+
+        return outp;
+      }
+
+        function resetGame() {
+          for (let i = 0; i < 9; i++) {
+            let cell = document.getElementById(`gc-${i+1}`);
+            cell.style.backgroundColor = "white";
+            cell.innerText = "";
+          }
+          currentSymbol = "X";
+          document.getElementById("play-header").innerText = `Playing with: ${currentSymbol}`;
+        }
+      
         function flipSymbol() {
-            currentSymbol = (currentSymbol === "X") ? "O" : "X";
-            document.getElementById("play-header").innerText = `Playing with: ${currentSymbol}`;
+          currentSymbol = (currentSymbol === "X") ? "O" : "X";
+          document.getElementById("play-header").innerText = `Playing with: ${currentSymbol}`;
         }
 
         function workOnCell(elem) {
-            let id = elem.id;
-            if (elem.innerText === "X" || elem.innerText === "O") return;
-            elem.innerText = currentSymbol;
-            elem.style.backgroundColor = (currentSymbol === "X") ? "#ddd" : "#bbb";
-            flipSymbol();
+          let id = elem.id;
+          if (elem.innerText === "X" || elem.innerText === "O") return;
+          elem.innerText = currentSymbol;
+          elem.style.backgroundColor = (currentSymbol === "X") ? "#eee" : "#bbb";
+
+          // Evaluating loss or win.
+          let currentGameState = getGameState();
+          let xWin = verifyCells(currentGameState, "X", [0, 1, 2]) ||
+                     verifyCells(currentGameState, "X", [3, 4, 5]) || 
+                     verifyCells(currentGameState, "X", [6, 7, 8]) || 
+                     verifyCells(currentGameState, "X", [0, 3, 6]) || 
+                     verifyCells(currentGameState, "X", [1, 4, 7]) ||
+                     verifyCells(currentGameState, "X", [2, 5, 8]) || 
+                     verifyCells(currentGameState, "X", [0, 4, 8]) || 
+                     verifyCells(currentGameState, "X", [2, 4, 6]);
+          
+          let oWin = verifyCells(currentGameState, "O", [0, 1, 2]) ||
+                     verifyCells(currentGameState, "O", [3, 4, 5]) || 
+                     verifyCells(currentGameState, "O", [6, 7, 8]) || 
+                     verifyCells(currentGameState, "O", [0, 3, 6]) || 
+                     verifyCells(currentGameState, "O", [1, 4, 7]) ||
+                     verifyCells(currentGameState, "O", [2, 5, 8]) || 
+                     verifyCells(currentGameState, "O", [0, 4, 8]) || 
+                     verifyCells(currentGameState, "O", [2, 4, 6]);
+
+          if (xWin) {
+            document.getElementById("play-header").innerText = "X has won!";
+            setTimeout(function(){resetGame();}, 1000);
+          } else if (oWin) {
+            document.getElementById("play-header").innerText = "O has won!";
+            setTimeout(function(){resetGame();}, 1000);
+          }
+          
+          flipSymbol();
         }
     </script>
 </head>
