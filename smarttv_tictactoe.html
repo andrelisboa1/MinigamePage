@@ -38,9 +38,37 @@
         height: 40vh;
 
         background: grey;
+
+        display: flex;
+        flex-direction: column;
+
+        justify-content: center;
+        align-items: center;
       }
 
-    
+      .game-row {
+        width: 100%;
+
+        display: flex;
+        flex-direction: row;
+
+        justify-content: center;
+        align-items: center;
+
+        margin: 1pt;
+      }
+
+      .game-cell {
+        width: 12vh;
+        height: 12vh;
+
+        border: 1pt solid black;
+        background-color: white;
+        border-radius: 6pt;
+
+        margin-left: 1pt;
+        margin-right: 1pt;
+      }
       
     </style>
     
@@ -51,7 +79,21 @@
     </header>
     <main>
         <div id="game-div">
-          
+          <div class="game-row">
+            <div class="game-cell"></div>
+            <div class="game-cell"></div>
+            <div class="game-cell"></div>
+          </div>
+          <div class="game-row">
+            <div class="game-cell"></div>
+            <div class="game-cell"></div>
+            <div class="game-cell"></div>
+          </div>
+          <div class="game-row">
+            <div class="game-cell"></div>
+            <div class="game-cell"></div>
+            <div class="game-cell"></div>
+          </div>
         </div>
         <br/>
         <div><a href="https://andrelisboa1.github.io/MinigamePage/smarttv">Go Back</a></div>
