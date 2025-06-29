@@ -160,6 +160,9 @@
           } else if (oWin) {
             document.getElementById("play-header").innerText = "===== O has won! =====";
             setTimeout(function(){resetGame();}, 3000);
+          } else if (currentGameState.filter(elem => elem === " ")) {
+            document.getElementById("play-header").innerText = "===== It was a tie! :( =====";
+            setTimeout(function(){resetGame();}, 3000);
           } else {
             flipSymbol();
           }
@@ -211,7 +214,7 @@
        
     </main>
     <footer>
-        <p>Iteration 4</p>
+        <p>Iteration 5</p>
     </footer>
 </body>
 </html>
